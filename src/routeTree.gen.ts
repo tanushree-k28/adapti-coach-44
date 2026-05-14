@@ -9,12 +9,35 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppVoiceRouteImport } from './routes/app.voice'
+import { Route as AppTutorRouteImport } from './routes/app.tutor'
+import { Route as AppRewardsRouteImport } from './routes/app.rewards'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppPremiumRouteImport } from './routes/app.premium'
+import { Route as AppParentRouteImport } from './routes/app.parent'
+import { Route as AppNotesRouteImport } from './routes/app.notes'
+import { Route as AppFeaturesRouteImport } from './routes/app.features'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppCertificatesRouteImport } from './routes/app.certificates'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +45,196 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppVoiceRoute = AppVoiceRouteImport.update({
+  id: '/voice',
+  path: '/voice',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTutorRoute = AppTutorRouteImport.update({
+  id: '/tutor',
+  path: '/tutor',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRewardsRoute = AppRewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPremiumRoute = AppPremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParentRoute = AppParentRouteImport.update({
+  id: '/parent',
+  path: '/parent',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotesRoute = AppNotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFeaturesRoute = AppFeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCertificatesRoute = AppCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/features': typeof AppFeaturesRoute
+  '/app/notes': typeof AppNotesRoute
+  '/app/parent': typeof AppParentRoute
+  '/app/premium': typeof AppPremiumRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/rewards': typeof AppRewardsRoute
+  '/app/tutor': typeof AppTutorRoute
+  '/app/voice': typeof AppVoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/features': typeof AppFeaturesRoute
+  '/app/notes': typeof AppNotesRoute
+  '/app/parent': typeof AppParentRoute
+  '/app/premium': typeof AppPremiumRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/rewards': typeof AppRewardsRoute
+  '/app/tutor': typeof AppTutorRoute
+  '/app/voice': typeof AppVoiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/features': typeof AppFeaturesRoute
+  '/app/notes': typeof AppNotesRoute
+  '/app/parent': typeof AppParentRoute
+  '/app/premium': typeof AppPremiumRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/rewards': typeof AppRewardsRoute
+  '/app/tutor': typeof AppTutorRoute
+  '/app/voice': typeof AppVoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/certificates'
+    | '/app/dashboard'
+    | '/app/features'
+    | '/app/notes'
+    | '/app/parent'
+    | '/app/premium'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/rewards'
+    | '/app/tutor'
+    | '/app/voice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/certificates'
+    | '/app/dashboard'
+    | '/app/features'
+    | '/app/notes'
+    | '/app/parent'
+    | '/app/premium'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/rewards'
+    | '/app/tutor'
+    | '/app/voice'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/certificates'
+    | '/app/dashboard'
+    | '/app/features'
+    | '/app/notes'
+    | '/app/parent'
+    | '/app/premium'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/rewards'
+    | '/app/tutor'
+    | '/app/voice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,12 +244,121 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/voice': {
+      id: '/app/voice'
+      path: '/voice'
+      fullPath: '/app/voice'
+      preLoaderRoute: typeof AppVoiceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tutor': {
+      id: '/app/tutor'
+      path: '/tutor'
+      fullPath: '/app/tutor'
+      preLoaderRoute: typeof AppTutorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/rewards': {
+      id: '/app/rewards'
+      path: '/rewards'
+      fullPath: '/app/rewards'
+      preLoaderRoute: typeof AppRewardsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/premium': {
+      id: '/app/premium'
+      path: '/premium'
+      fullPath: '/app/premium'
+      preLoaderRoute: typeof AppPremiumRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/parent': {
+      id: '/app/parent'
+      path: '/parent'
+      fullPath: '/app/parent'
+      preLoaderRoute: typeof AppParentRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notes': {
+      id: '/app/notes'
+      path: '/notes'
+      fullPath: '/app/notes'
+      preLoaderRoute: typeof AppNotesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/features': {
+      id: '/app/features'
+      path: '/features'
+      fullPath: '/app/features'
+      preLoaderRoute: typeof AppFeaturesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/certificates': {
+      id: '/app/certificates'
+      path: '/certificates'
+      fullPath: '/app/certificates'
+      preLoaderRoute: typeof AppCertificatesRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCertificatesRoute: typeof AppCertificatesRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppFeaturesRoute: typeof AppFeaturesRoute
+  AppNotesRoute: typeof AppNotesRoute
+  AppParentRoute: typeof AppParentRoute
+  AppPremiumRoute: typeof AppPremiumRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppRewardsRoute: typeof AppRewardsRoute
+  AppTutorRoute: typeof AppTutorRoute
+  AppVoiceRoute: typeof AppVoiceRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCertificatesRoute: AppCertificatesRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppFeaturesRoute: AppFeaturesRoute,
+  AppNotesRoute: AppNotesRoute,
+  AppParentRoute: AppParentRoute,
+  AppPremiumRoute: AppPremiumRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppRewardsRoute: AppRewardsRoute,
+  AppTutorRoute: AppTutorRoute,
+  AppVoiceRoute: AppVoiceRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
