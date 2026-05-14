@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import {
   LayoutDashboard, Brain, Mic, FileText, BarChart3, Award, Trophy,
-  Users, User, Crown, Sparkles, LogOut, GraduationCap,
+  Users, User, Crown, Sparkles, LogOut, GraduationCap, Video, ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,8 @@ const items = [
   { to: "/app/certificates", label: "Certificates", icon: Award },
   { to: "/app/rewards", label: "Rewards & Medals", icon: Trophy },
   { to: "/app/parent", label: "Parent Dashboard", icon: Users },
+  { to: "/app/classroom", label: "Virtual Classroom", icon: Video },
+  { to: "/app/proctoring", label: "Exam Proctoring", icon: ShieldCheck },
   { to: "/app/features", label: "More Features", icon: Sparkles },
   { to: "/app/premium", label: "Premium", icon: Crown },
   { to: "/app/profile", label: "Profile", icon: User },
