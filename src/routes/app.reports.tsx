@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { loadProgress, type DailyEntry } from "@/lib/progress";
+import { loadProgress, syncFromDb, type DailyEntry } from "@/lib/progress";
 import { Star } from "lucide-react";
 
 export const Route = createFileRoute("/app/reports")({ component: ReportsPage });
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/app/reports")({ component: ReportsPage })
 function ReportsPage() {
   const [entries, setEntries] = useState<DailyEntry[]>([]);
   const [rating, setRating] = useState(0);
-  useEffect(() => setEntries(loadProgress().slice().reverse()), []);
+  useEffect(() => { syncFromDb().then(p => setEntries(p.slice().reverse())); }, []);
 
   return (
     <div className="space-y-6">

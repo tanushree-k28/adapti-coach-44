@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { loadProgress, totalXp, streakCount, medalFor } from "@/lib/progress";
+import { loadProgress, syncFromDb, totalXp, streakCount, medalFor } from "@/lib/progress";
 import { Trophy, Flame, Gift } from "lucide-react";
 
 export const Route = createFileRoute("/app/rewards")({ component: RewardsPage });
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/app/rewards")({ component: RewardsPage })
 function RewardsPage() {
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
-  useEffect(() => { const p = loadProgress(); setXp(totalXp(p)); setStreak(streakCount(p)); }, []);
+  useEffect(() => { syncFromDb().then(p => { setXp(totalXp(p)); setStreak(streakCount(p)); }); }, []);
   const medal = medalFor(xp);
 
   const tiers = [

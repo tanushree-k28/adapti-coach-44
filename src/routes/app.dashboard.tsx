@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { loadProgress, streakCount, totalXp, medalFor, logActivity, type DailyEntry } from "@/lib/progress";
+import { loadProgress, streakCount, totalXp, medalFor, logActivity, syncFromDb, type DailyEntry } from "@/lib/progress";
 import { Button } from "@/components/ui/button";
 import { Flame, Trophy, BookOpen, Clock } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/app/dashboard")({ component: Dashboard })
 
 function Dashboard() {
   const [entries, setEntries] = useState<DailyEntry[]>([]);
-  useEffect(() => setEntries(loadProgress()), []);
+  useEffect(() => { syncFromDb().then(setEntries); }, []);
 
   const xp = totalXp(entries);
   const streak = streakCount(entries);
@@ -24,7 +24,7 @@ function Dashboard() {
     days.push({ date: d.toLocaleDateString(undefined, { weekday: "short" }), minutes: entries.find((e) => e.date === key)?.minutes ?? 0 });
   }
 
-  const quickStudy = () => { logActivity("Quick session", 10); setEntries(loadProgress()); };
+  const quickStudy = () => { logActivity("Quick session", 10); syncFromDb().then(setEntries); };
 
   return (
     <div className="space-y-6">

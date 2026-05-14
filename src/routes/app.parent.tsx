@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { loadProgress, totalXp, streakCount } from "@/lib/progress";
+import { loadProgress, syncFromDb, totalXp, streakCount } from "@/lib/progress";
 import { Users, TrendingUp, Award } from "lucide-react";
 
 export const Route = createFileRoute("/app/parent")({ component: ParentPage });
@@ -10,7 +10,7 @@ function ParentPage() {
   const [streak, setStreak] = useState(0);
   const [days, setDays] = useState(0);
   useEffect(() => {
-    const p = loadProgress(); setXp(totalXp(p)); setStreak(streakCount(p)); setDays(p.length);
+    syncFromDb().then(p => { setXp(totalXp(p)); setStreak(streakCount(p)); setDays(p.length); });
   }, []);
 
   return (
