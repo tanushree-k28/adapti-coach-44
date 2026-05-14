@@ -18,11 +18,13 @@ import { Route as AppTutorRouteImport } from './routes/app.tutor'
 import { Route as AppRewardsRouteImport } from './routes/app.rewards'
 import { Route as AppReportsRouteImport } from './routes/app.reports'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppProctoringRouteImport } from './routes/app.proctoring'
 import { Route as AppPremiumRouteImport } from './routes/app.premium'
 import { Route as AppParentRouteImport } from './routes/app.parent'
 import { Route as AppNotesRouteImport } from './routes/app.notes'
 import { Route as AppFeaturesRouteImport } from './routes/app.features'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppClassroomRouteImport } from './routes/app.classroom'
 import { Route as AppCertificatesRouteImport } from './routes/app.certificates'
 
 const SignupRoute = SignupRouteImport.update({
@@ -70,6 +72,11 @@ const AppProfileRoute = AppProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AppRoute,
 } as any)
+const AppProctoringRoute = AppProctoringRouteImport.update({
+  id: '/proctoring',
+  path: '/proctoring',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPremiumRoute = AppPremiumRouteImport.update({
   id: '/premium',
   path: '/premium',
@@ -95,6 +102,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppClassroomRoute = AppClassroomRouteImport.update({
+  id: '/classroom',
+  path: '/classroom',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCertificatesRoute = AppCertificatesRouteImport.update({
   id: '/certificates',
   path: '/certificates',
@@ -107,11 +119,13 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/classroom': typeof AppClassroomRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/features': typeof AppFeaturesRoute
   '/app/notes': typeof AppNotesRoute
   '/app/parent': typeof AppParentRoute
   '/app/premium': typeof AppPremiumRoute
+  '/app/proctoring': typeof AppProctoringRoute
   '/app/profile': typeof AppProfileRoute
   '/app/reports': typeof AppReportsRoute
   '/app/rewards': typeof AppRewardsRoute
@@ -124,11 +138,13 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/classroom': typeof AppClassroomRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/features': typeof AppFeaturesRoute
   '/app/notes': typeof AppNotesRoute
   '/app/parent': typeof AppParentRoute
   '/app/premium': typeof AppPremiumRoute
+  '/app/proctoring': typeof AppProctoringRoute
   '/app/profile': typeof AppProfileRoute
   '/app/reports': typeof AppReportsRoute
   '/app/rewards': typeof AppRewardsRoute
@@ -142,11 +158,13 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/classroom': typeof AppClassroomRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/features': typeof AppFeaturesRoute
   '/app/notes': typeof AppNotesRoute
   '/app/parent': typeof AppParentRoute
   '/app/premium': typeof AppPremiumRoute
+  '/app/proctoring': typeof AppProctoringRoute
   '/app/profile': typeof AppProfileRoute
   '/app/reports': typeof AppReportsRoute
   '/app/rewards': typeof AppRewardsRoute
@@ -161,11 +179,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/app/certificates'
+    | '/app/classroom'
     | '/app/dashboard'
     | '/app/features'
     | '/app/notes'
     | '/app/parent'
     | '/app/premium'
+    | '/app/proctoring'
     | '/app/profile'
     | '/app/reports'
     | '/app/rewards'
@@ -178,11 +198,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/app/certificates'
+    | '/app/classroom'
     | '/app/dashboard'
     | '/app/features'
     | '/app/notes'
     | '/app/parent'
     | '/app/premium'
+    | '/app/proctoring'
     | '/app/profile'
     | '/app/reports'
     | '/app/rewards'
@@ -195,11 +217,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/app/certificates'
+    | '/app/classroom'
     | '/app/dashboard'
     | '/app/features'
     | '/app/notes'
     | '/app/parent'
     | '/app/premium'
+    | '/app/proctoring'
     | '/app/profile'
     | '/app/reports'
     | '/app/rewards'
@@ -279,6 +303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProfileRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/proctoring': {
+      id: '/app/proctoring'
+      path: '/proctoring'
+      fullPath: '/app/proctoring'
+      preLoaderRoute: typeof AppProctoringRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/premium': {
       id: '/app/premium'
       path: '/premium'
@@ -314,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/classroom': {
+      id: '/app/classroom'
+      path: '/classroom'
+      fullPath: '/app/classroom'
+      preLoaderRoute: typeof AppClassroomRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/certificates': {
       id: '/app/certificates'
       path: '/certificates'
@@ -326,11 +364,13 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppCertificatesRoute: typeof AppCertificatesRoute
+  AppClassroomRoute: typeof AppClassroomRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppFeaturesRoute: typeof AppFeaturesRoute
   AppNotesRoute: typeof AppNotesRoute
   AppParentRoute: typeof AppParentRoute
   AppPremiumRoute: typeof AppPremiumRoute
+  AppProctoringRoute: typeof AppProctoringRoute
   AppProfileRoute: typeof AppProfileRoute
   AppReportsRoute: typeof AppReportsRoute
   AppRewardsRoute: typeof AppRewardsRoute
@@ -340,11 +380,13 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppCertificatesRoute: AppCertificatesRoute,
+  AppClassroomRoute: AppClassroomRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppFeaturesRoute: AppFeaturesRoute,
   AppNotesRoute: AppNotesRoute,
   AppParentRoute: AppParentRoute,
   AppPremiumRoute: AppPremiumRoute,
+  AppProctoringRoute: AppProctoringRoute,
   AppProfileRoute: AppProfileRoute,
   AppReportsRoute: AppReportsRoute,
   AppRewardsRoute: AppRewardsRoute,
