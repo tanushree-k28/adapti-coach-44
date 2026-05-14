@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      classroom_messages: {
+        Row: {
+          body: string
+          created_at: string
+          display_name: string | null
+          id: string
+          room: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          room?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          room?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      proctoring_events: {
+        Row: {
+          created_at: string
+          detail: string | null
+          event_type: string
+          exam_id: string
+          id: string
+          severity: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          detail?: string | null
+          event_type: string
+          exam_id: string
+          id?: string
+          severity?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          detail?: string | null
+          event_type?: string
+          exam_id?: string
+          id?: string
+          severity?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -44,6 +101,69 @@ export type Database = {
           id?: string
           school?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      progress_events: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          meta: Json | null
+          subject: string | null
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          meta?: Json | null
+          subject?: string | null
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          meta?: Json | null
+          subject?: string | null
+          user_id?: string
+          xp?: number
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          current_period_end: string | null
+          external_id: string | null
+          id: string
+          provider: string | null
+          status: string
+          tier: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          current_period_end?: string | null
+          external_id?: string | null
+          id?: string
+          provider?: string | null
+          status?: string
+          tier?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          current_period_end?: string | null
+          external_id?: string | null
+          id?: string
+          provider?: string | null
+          status?: string
+          tier?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
